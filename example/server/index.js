@@ -7,12 +7,14 @@ const events = [
   {
     id: 0,
     title: "Breakfast",
-    startTime: new Date("December 17, 2018 10:00:00")
+    startTime: new Date("December 17, 2018 10:00:00"),
+    description: "Have a nice breakfast"
   },
   {
     id: 1,
     title: "Lunch",
-    startTime: new Date("December 17, 2018 12:30:00")
+    startTime: new Date("December 17, 2018 12:30:00"),
+    description: "Have a healthy lunch"
   }
 ];
 

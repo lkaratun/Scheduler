@@ -19,9 +19,11 @@ class EventDetails extends Component {
   render() {
     return this.state.eventData ? (
       <div>
+        <strong> {this.state.eventData.title}</strong>
+        <br />
         {moment(this.state.eventData.startTime).format("MMMM Do YYYY, h:mm a")}
         <br />
-        {this.state.eventData.title}
+        {this.state.eventData.description}
         <br />
         <Link to="/">Home page</Link>
       </div>
