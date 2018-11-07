@@ -1,39 +1,29 @@
-const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
+const express = require("express");
+const app = express();
+const cors = require("cors");
+app.use(cors());
 
-const port = 4000;
-
-const books = [
+const events = [
   {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
+    id: 0,
+    title: "Breakfast",
+    startTime: new Date("December 17, 2018 10:00:00")
   },
   {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
+    id: 1,
+    title: "Lunch",
+    startTime: new Date("December 17, 2018 12:30:00")
+  }
 ];
 
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
+// respond with the list of events when a GET request is made to the homepage
+app.get("/event/:id", function(req, res) {
+  console.log(req.params.id);
+  console.log(events.filter(event => event.id === +req.params.id));
+  res.send(...events.filter(event => event.id === +req.params.id));
+});
+app.get("/", function(req, res) {
+  res.send(events);
+});
 
-  type Query {
-    books: [Book]
-  }
-`;
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
-
-const app = express();
-// app.use(/* express middleware */)
-const server = new ApolloServer({ typeDefs, resolvers });
-server.applyMiddleware({ app, path: '/graphql' });
-
-app.listen(port, () => console.log(`Listening on port ${port}.`));
+app.listen(4000, () => console.log("Listening on port 4000"));
