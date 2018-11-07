@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import Event from "./Event";
 
-
 class EventList extends Component {
   constructor() {
     super();
-    this.state = { events: [] };
+    this.state = { eventIds: [] };
   }
 
   async componentDidMount() {
-    const eventList = await fetch("http://localhost:4000")
+    const eventIds = await fetch("http://localhost:4000")
       .then(res => res.json())
       .catch(console.log);
-    this.setState({ events: eventList });
+    this.setState({ eventIds });
   }
 
   openComponentDetails() {}
 
   render() {
-    const eventComponents = this.state.events.map(event => (
-      <Event data={event} key={event.id} />
+    const eventComponents = this.state.eventIds.map(id => (
+      <Event id={id} key={id} />
     ));
     return <div>{eventComponents}</div>;
   }

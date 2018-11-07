@@ -25,7 +25,7 @@ app.get("/event/:id", function(req, res) {
   res.send(...events.filter(event => event.id === +req.params.id));
 });
 app.get("/", function(req, res) {
-  res.send(events);
+  res.send(events.map(event => event.id));
 });
 
 app.listen(4000, () => console.log("Listening on port 4000"));
