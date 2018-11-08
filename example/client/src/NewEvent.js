@@ -1,26 +1,37 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 class NewEvent extends Component {
   constructor() {
     super();
-    this.state = { name: "", description: "", startTime: new Date() };
+    this.state = {
+      name: "",
+      description: "",
+      startTime: new Date(),
+      redirect: false
+    };
   }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    axios.post("http://localhost:4000/newEvent", {
+    await axios.post("http://localhost:4000/newEvent", {
       name: this.state.name,
+      description: this.state.description,
       startTime: this.state.startTime
     });
+    this.setState({ redirect: true });
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div>
         <form method="post" onSubmit={this.handleSubmit}>
@@ -31,7 +42,7 @@ class NewEvent extends Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-          <label htmlFor="description">Event name: </label>
+          <label htmlFor="description">Description: </label>
           <input
             type="text"
             name="description"
