@@ -5,13 +5,13 @@ import axios from "axios";
 import React, { Component } from "react";
 
 class Event extends Component {
-  constructor({ id }) {
+  constructor() {
     super();
-    this.state = { id };
+    this.state = {};
   }
   async componentDidMount() {
     const eventData = (await axios.get(
-      `http://localhost:4000/event/${this.state.id}`
+      `http://localhost:4000/event/${this.props.id}`
     )).data;
     this.setState({ eventData });
   }
@@ -19,11 +19,12 @@ class Event extends Component {
   render() {
     return this.state.eventData ? (
       <div>
-        <strong> {this.state.eventData.title}</strong>
+        <Link to={`/event/${this.props.id}`}>
+          <strong> {this.state.eventData.name}</strong>
+        </Link>
         <br />
         {moment(this.state.eventData.startTime).format("MMMM Do YYYY, h:mm a")}
         <br />
-        <Link to="/">Home page</Link>
       </div>
     ) : null;
   }

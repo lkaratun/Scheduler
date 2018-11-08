@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 import EventList from "./EventList";
+import NewEvent from "./NewEvent";
 import EventDetails from "./EventDetails";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={EventList} />
           <Route path="/event/:id" component={EventDetails} />
+          <Route path="/newEvent" component={NewEvent} />
         </Switch>
       </div>
     );

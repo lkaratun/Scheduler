@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Event from "./Event";
 
 class EventList extends Component {
@@ -20,7 +21,12 @@ class EventList extends Component {
     const eventComponents = this.state.eventIds.map(id => (
       <Event id={id} key={id} />
     ));
-    return <div>{eventComponents}</div>;
+    return (
+      <div>
+        <Link to="/newEvent">New event</Link>
+        {eventComponents}
+      </div>
+    );
   }
 }
 export default EventList;
