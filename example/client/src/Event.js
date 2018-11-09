@@ -1,4 +1,3 @@
-import moment from "moment";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -23,7 +22,8 @@ class Event extends Component {
           <strong> {this.state.eventData.name}</strong>
         </Link>
         <br />
-        {moment(this.state.eventData.startTime).format("MMMM Do YYYY, h:mm a")}
+        {/* {moment(this.state.eventData.startTime).format("MMMM Do YYYY, h:mm a")} */}
+        {this.state.eventData.startTime}
         <br />
       </div>
     ) : null;

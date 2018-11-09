@@ -29,7 +29,7 @@ class EventDetails extends Component {
       <div>
         <strong> {this.state.eventData.name}</strong>
         <br />
-        {moment(this.state.eventData.startTime).format("MMMM Do YYYY, h:mm a")}
+        {this.state.eventData.startTime}
         <br />
         {this.state.eventData.description}
         <br />

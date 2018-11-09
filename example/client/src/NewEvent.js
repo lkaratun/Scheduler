@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import Datetime from "react-datetime";
+import moment from "moment";
+import "react-datetime/css/react-datetime.css";
+import "./NewEvent.css";
 
 class NewEvent extends Component {
   constructor() {
@@ -8,7 +12,7 @@ class NewEvent extends Component {
     this.state = {
       name: "",
       description: "",
-      startTime: new Date(),
+      startTime: moment().format("MMMM Do YYYY, h:mm a"),
       redirect: false
     };
   }
@@ -26,6 +30,9 @@ class NewEvent extends Component {
     });
     this.setState({ redirect: true });
   };
+  updateTime = time => {
+    this.setState({ startTime: time.format("MMMM Do YYYY, h:mm a") });
+  };
 
   render() {
     if (this.state.redirect) {
@@ -41,7 +48,8 @@ class NewEvent extends Component {
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
-          />
+          />{" "}
+          <br />
           <label htmlFor="description">Description: </label>
           <input
             type="text"
@@ -49,6 +57,14 @@ class NewEvent extends Component {
             value={this.state.description}
             onChange={this.handleChange}
           />
+          <br />
+          <label htmlFor="time">Start time: </label>
+          <Datetime
+            name="time"
+            onChange={this.updateTime}
+            defaultValue={new Date().toString()}
+          />
+          <br />
           <input type="submit" value="Create event" />
         </form>
         <Link to="/">Return to home page</Link>

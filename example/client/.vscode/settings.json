@@ -1,5 +1,8 @@
 {  "workbench.colorCustomizations": {
   "titleBar.activeBackground": "#25A125",
   "titleBar.inactiveBackground": "#4B7B4B"
-}
+},
+"cSpell.words": [
+  "Datetime"
+]
 }
