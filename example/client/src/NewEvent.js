@@ -41,6 +41,7 @@ class NewEvent extends Component {
 
     return (
       <div>
+        <h3>New event</h3> 
         <form method="post" onSubmit={this.handleSubmit}>
           <label htmlFor="name">Event name: </label>
           <input
@@ -48,6 +49,7 @@ class NewEvent extends Component {
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
+            required
           />{" "}
           <br />
           <label htmlFor="description">Description: </label>
@@ -66,8 +68,8 @@ class NewEvent extends Component {
           />
           <br />
           <input type="submit" value="Create event" />
+          <Link to="/">Return to home page</Link>
         </form>
-        <Link to="/">Return to home page</Link>
       </div>
     );
   }

@@ -1,0 +1,13 @@
+a {
+  text-decoration: none;
+}
+a.new-event {
+  color: black;
+  margin: 0.5rem;
+}
+a.new-event:visited {
+  color: black;
+}
+button.new-event {
+  margin: 1rem;
+}

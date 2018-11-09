@@ -1,8 +1,7 @@
-import moment from "moment";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
-
 import React, { Component } from "react";
+import "./EventDetails.css";
 
 class EventDetails extends Component {
   constructor({ match: { params } }) {
@@ -27,12 +26,11 @@ class EventDetails extends Component {
 
     return this.state.eventData ? (
       <div>
-        <strong> {this.state.eventData.name}</strong>
-        <br />
-        {this.state.eventData.startTime}
-        <br />
-        {this.state.eventData.description}
-        <br />
+        <p>
+          <strong> {this.state.eventData.name}</strong>
+        </p>
+        <p> {this.state.eventData.startTime}</p>
+        <p> {this.state.eventData.description}</p>
         <button onClick={this.deleteEvent}>Delete event</button>
         <Link to="/">Home page</Link>
       </div>

@@ -19,11 +19,10 @@ class Event extends Component {
     return this.state.eventData ? (
       <div>
         <Link to={`/event/${this.props.id}`}>
-          <strong> {this.state.eventData.name}</strong>
+          <strong>{this.state.eventData.name}</strong>
         </Link>
-        <br />
-        {/* {moment(this.state.eventData.startTime).format("MMMM Do YYYY, h:mm a")} */}
-        {this.state.eventData.startTime}
+        &nbsp;
+        ({this.state.eventData.startTime})
         <br />
       </div>
     ) : null;

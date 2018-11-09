@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Event from "./Event";
+import "./EventList.css";
 
 class EventList extends Component {
   constructor() {
@@ -23,8 +24,11 @@ class EventList extends Component {
     ));
     return (
       <div>
-        <Link to="/newEvent">New event</Link>
+        <h3>Existing events:</h3>
         {eventComponents}
+        <button className="new-event">
+          <Link to="/newEvent" className="new-event">New event</Link>
+        </button>
       </div>
     );
   }
