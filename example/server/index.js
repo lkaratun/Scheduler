@@ -33,6 +33,10 @@ async function createEvent(event) {
   const collection = await collectionPromise;
   return collection.insertOne(event);
 }
+async function deleteEvent(_id) {
+  const collection = await collectionPromise;
+  return collection.deleteOne({ _id: new mongodb.ObjectId(_id) });
+}
 
 // Homepage: list of events
 app.get("/", async (req, res) => {
@@ -45,10 +49,15 @@ app.get("/event/:id", async (req, res) => {
   console.log(eventDetails);
   res.send(eventDetails);
 });
+// Event creation
 app.post("/newEvent", async (req, res, next) => {
-  // events.push({ ...req.body, id: nextId });
-  // nextId += 1;
   const eventDetails = await createEvent(req.body);
+  console.log(eventDetails);
+  res.send(eventDetails);
+});
+// Event deletion
+app.delete("/event/:id", async (req, res, next) => {
+  const eventDetails = await deleteEvent(req.params.id);
   console.log(eventDetails);
   res.send(eventDetails);
 });

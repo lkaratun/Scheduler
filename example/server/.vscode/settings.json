@@ -1,5 +1,7 @@
 {
-  "cSpell.words": [
-    "spdy"
-  ]
+  "cSpell.words": ["spdy"],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#4141C7",
+    "titleBar.inactiveBackground": "#6363A5"
+  }
 }

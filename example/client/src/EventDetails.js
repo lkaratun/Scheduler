@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import React, { Component } from "react";
@@ -7,7 +7,7 @@ import React, { Component } from "react";
 class EventDetails extends Component {
   constructor({ match: { params } }) {
     super();
-    this.state = { id: params.id };
+    this.state = { id: params.id, redirect: false };
   }
   async componentDidMount() {
     const eventData = (await axios.get(
@@ -15,8 +15,16 @@ class EventDetails extends Component {
     )).data;
     this.setState({ eventData });
   }
+  deleteEvent = async () => {
+    await axios.delete(`http://localhost:4000/event/${this.state.id}`);
+    this.setState({ redirect: true });
+  };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+
     return this.state.eventData ? (
       <div>
         <strong> {this.state.eventData.name}</strong>
@@ -25,6 +33,7 @@ class EventDetails extends Component {
         <br />
         {this.state.eventData.description}
         <br />
+        <button onClick={this.deleteEvent}>Delete event</button>
         <Link to="/">Home page</Link>
       </div>
     ) : null;
