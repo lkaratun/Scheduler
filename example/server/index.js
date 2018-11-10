@@ -5,10 +5,25 @@ const bodyParser = require("body-parser");
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 require("dotenv").load();
+const spdy = require("spdy");
+const fs = require("fs");
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const { keyPath, certPath } = process.env;
+spdy
+  .createServer(
+    {
+      key: fs.readFileSync(keyPath),
+      cert: fs.readFileSync(certPath)
+    },
+    app
+  )
+  .listen(4000, () =>
+    console.log("Server is listening to https requests on port 4000")
+  );
 
 function setUpDBConnection() {
   const dbUrl = `mongodb+srv://${process.env.dbUserName}:${
@@ -62,4 +77,4 @@ app.delete("/event/:id", async (req, res, next) => {
   res.send(eventDetails);
 });
 
-app.listen(4000, () => console.log("Listening on port 4000"));
+// app.listen(4000, () => console.log("Listening on port 4000"));
