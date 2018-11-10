@@ -23,7 +23,7 @@ class NewEvent extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    await axios.post("http://levkaratun.com:4000/newEvent", {
+    await axios.post("https://levkaratun.com:4000/newEvent", {
       name: this.state.name,
       description: this.state.description,
       startTime: this.state.startTime
