@@ -10,12 +10,12 @@ class EventDetails extends Component {
   }
   async componentDidMount() {
     const eventData = (await axios.get(
-      `http://localhost:4000/event/${this.state.id}`
+      `http://levkaratun.com:4000/event/${this.state.id}`
     )).data;
     this.setState({ eventData });
   }
   deleteEvent = async () => {
-    await axios.delete(`http://localhost:4000/event/${this.state.id}`);
+    await axios.delete(`http://levkaratun.com:4000/event/${this.state.id}`);
     this.setState({ redirect: true });
   };
 

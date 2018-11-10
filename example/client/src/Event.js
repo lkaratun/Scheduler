@@ -10,7 +10,7 @@ class Event extends Component {
   }
   async componentDidMount() {
     const eventData = (await axios.get(
-      `http://localhost:4000/event/${this.props.id}`
+      `http://levkaratun.com:4000/event/${this.props.id}`
     )).data;
     this.setState({ eventData });
   }

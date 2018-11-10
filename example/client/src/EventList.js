@@ -10,7 +10,7 @@ class EventList extends Component {
   }
 
   async componentDidMount() {
-    const eventIds = await fetch("http://localhost:4000")
+    const eventIds = await fetch("http://levkaratun.com:4000")
       .then(res => res.json())
       .catch(console.log);
     this.setState({ eventIds });
